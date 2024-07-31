@@ -10,7 +10,7 @@
 	"requirePragma": false,
 	"semi": true,
 	"semicolon": false,
-	"singleQuote": false,
+	"singleQuote": true,
 	"tabWidth": 2,
 	"trailingComma": "all",
 	"useTabs": true
