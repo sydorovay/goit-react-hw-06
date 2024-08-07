@@ -1,7 +1,7 @@
 import css from './Contact.module.css';
 import { FaUser, FaPhone } from 'react-icons/fa';
 
-const Contact = ({contact, deleteContact }) => {
+const Contact = ({contact, deleteContact} ) => {
   return (
     <div className={css.contactItem}>
       <div className={css.contactInfo}>
