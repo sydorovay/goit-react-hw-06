@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const contactsSlice = createSlice({
-  name: 'contacts', // Виправлено помилку в імені слайсу
+  name: 'contacts',
   initialState,
   reducers: {
     addContact: (state, action) => {
@@ -17,13 +17,10 @@ const contactsSlice = createSlice({
   },
 });
 
-// Експортуємо екшени для використання в dispatch
 export const { addContact, deleteContact } = contactsSlice.actions;
 
-// Селектор для доступу до списку контактів
 export const selectContacts = state => state.contacts.items;
 
-// Правильний експорт редюсера
 export const contactsReducer = contactsSlice.reducer;
 
 export default contactsReducer;
