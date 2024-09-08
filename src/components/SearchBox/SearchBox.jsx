@@ -1,37 +1,27 @@
-
-import  { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeFilter, selectNameFilter } from '../../redux/filtersSlice';
 import css from './SearchBox.module.css';
 
-const SearchBox = ({ filter, onFilterChange }) => {
-  const [placeholder, setPlaceholder] = useState('Find contacts by name');
+const SearchBox = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(selectNameFilter);
 
-  const handleFocus = () => {
-    setPlaceholder('');
-  };
-
-  const handleBlur = () => {
-    setPlaceholder('Find contacts by name');
+  // Обробник зміни значення фільтра
+  const handleChange = (e) => {
+    dispatch(changeFilter(e.target.value)); // Відправляємо дію для оновлення фільтра
   };
 
   return (
     <div className={css.searchBox}>
-      <h2 className={css.searchHeader}>Find contacts by name</h2>
+      <label htmlFor="filter">Find contacts by name</label>
       <input
         type="text"
+        id="filter"
         value={filter}
-        onChange={(e) => onFilterChange(e.target.value)}
-        placeholder={placeholder}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        onChange={handleChange}
       />
     </div>
   );
-};
-
-SearchBox.propTypes = {
-  filter: PropTypes.string.isRequired,
-  onFilterChange: PropTypes.func.isRequired,
 };
 
 export default SearchBox;

@@ -1,15 +1,19 @@
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsSlice'; // Імпорт дії
 import css from './Contact.module.css';
-import { FaUser, FaPhone } from 'react-icons/fa';
 
-const Contact = ({contact, deleteContact }) => {
+const Contact = ({ contact }) => {
+  const dispatch = useDispatch(); // Ініціалізація useDispatch
+
+  const handleDelete = () => {
+    dispatch(deleteContact(contact.id)); // Відправлення дії видалення
+  };
+
   return (
-    <div className={css.contactItem}>
-      <div className={css.contactInfo}>
-        <span className={css.contactName}><span className={css.user} ><FaUser /> </span> {contact.name}</span>
-        <span className={css.contactNumber}><span  className={css.phone}><FaPhone/></span>{contact.number}</span>
-      </div>
-      <button className={css.deleteButton} onClick={() => deleteContact(contact.id)}>Delete</button>
-    </div>
+    <li className={css.contact}>
+      <p>{contact.name}: {contact.number}</p>
+      <button onClick={handleDelete}>Delete</button>
+    </li>
   );
 };
 
