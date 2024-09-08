@@ -7,31 +7,23 @@ import { addContact, deleteContact, selectContacts } from './redux/contactsSlice
 import { changeFilter, selectNameFilter } from './redux/filtersSlice';
 
 const App = () => {
-  // Хук для відправки дій у Redux
   const dispatch = useDispatch();
-
-  // Отримуємо список контактів зі стану Redux
   const contacts = useSelector(selectContacts);
-
-  // Отримуємо значення фільтра зі стану Redux
   const filter = useSelector(selectNameFilter);
 
-  // Функція для додавання нового контакту
   const handleAddContact = (newContact) => {
     dispatch(addContact(newContact));
   };
 
-  // Функція для видалення контакту за ID
   const handleDeleteContact = (idToDelete) => {
     dispatch(deleteContact(idToDelete));
   };
 
-  // Функція для зміни фільтра
   const handleFilterChange = (filterValue) => {
-    dispatch(changeFilter(filterValue)); // Відправляємо дію для зміни фільтра
+    dispatch(changeFilter(filterValue));
   };
 
-  // Фільтрація контактів на основі введеного значення фільтра
+  // Фільтрація контактів
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -39,9 +31,9 @@ const App = () => {
   return (
     <div className={css.appContainer}>
       <h1 className={css.title}>Phonebook</h1>
-      <ContactForm addContact={handleAddContact} />
-      <SearchBox filter={filter} onFilterChange={handleFilterChange} />
-      <ContactList contacts={filteredContacts} deleteContact={handleDeleteContact} />
+      <ContactForm onAddContact={handleAddContact} />
+      <SearchBox onFilterChange={handleFilterChange} />
+      <ContactList contacts={filteredContacts} onDeleteContact={handleDeleteContact} />
     </div>
   );
 };

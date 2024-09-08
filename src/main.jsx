@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { store, persistor } from './redux/store'; // Імпортуємо правильно
+import { store, persistor } from './redux/store'; // Ensure these are correctly exported from your store
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

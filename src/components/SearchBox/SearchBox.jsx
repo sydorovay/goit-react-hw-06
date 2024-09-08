@@ -6,9 +6,8 @@ const SearchBox = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectNameFilter);
 
-  // Обробник зміни значення фільтра
   const handleChange = (e) => {
-    dispatch(changeFilter(e.target.value)); // Відправляємо дію для оновлення фільтра
+    dispatch(changeFilter(e.target.value));
   };
 
   return (
@@ -19,6 +18,7 @@ const SearchBox = () => {
         id="filter"
         value={filter}
         onChange={handleChange}
+        aria-label="Filter contacts by name" 
       />
     </div>
   );

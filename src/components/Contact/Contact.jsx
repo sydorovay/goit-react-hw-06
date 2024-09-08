@@ -12,7 +12,13 @@ const Contact = ({ contact }) => {
   return (
     <li className={css.contact}>
       <p>{contact.name}: {contact.number}</p>
-      <button onClick={handleDelete}>Delete</button>
+      <button 
+        onClick={handleDelete} 
+        className={css.deleteButton} 
+        aria-label={`Delete ${contact.name}`}
+      >
+        Delete
+      </button>
     </li>
   );
 };
