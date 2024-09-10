@@ -1,9 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contactsSlice'; 
 import css from './ContactForm.module.css';
 
-const ContactForm = ({ onAddContact }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch(); // Ініціалізація useDispatch
+
   const initialValues = { name: '', number: '' };
 
   const validationSchema = Yup.object({
@@ -13,7 +17,7 @@ const ContactForm = ({ onAddContact }) => {
 
   const handleSubmit = (values, { resetForm }) => {
     const newContact = { id: uuidv4(), name: values.name, number: values.number };
-    onAddContact(newContact);
+    dispatch(addContact(newContact)); // Додавання контакту через Redux
     resetForm();
   };
 
@@ -30,7 +34,7 @@ const ContactForm = ({ onAddContact }) => {
             id="name"
             name="name"
             type="text"
-            autoComplete="name" // Adding autocomplete attribute
+            autoComplete="name"
           />
           <ErrorMessage name="name" component="div" className={css.errorMessage} />
         </div>
@@ -40,7 +44,7 @@ const ContactForm = ({ onAddContact }) => {
             id="number"
             name="number"
             type="text"
-            autoComplete="tel" // Adding autocomplete attribute
+            autoComplete="tel"
           />
           <ErrorMessage name="number" component="div" className={css.errorMessage} />
         </div>
