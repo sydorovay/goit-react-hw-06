@@ -6,8 +6,8 @@ import filtersReducer from './filtersSlice';
 
 // Конфігурація для збереження контактів
 const contactsPersistConfig = {
-  key: 'contacts',        
-  storage,                
+  key: 'contacts',
+  storage,
 };
 
 const persistedContactsReducer = persistReducer(contactsPersistConfig, contactsReducer);
